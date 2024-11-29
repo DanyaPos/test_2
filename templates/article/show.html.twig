@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1 class="mt-4 ms-3">{{ article.title }}</h1>
+
+    <table class="table table-bordered table-striped mt-3">
+        <tr>
+            <th scope="row">Описание</th>
+            <td>{{ article.description }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Просмотры</th>
+            <td>{{ article.views|format_views }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Дата публикации</th>
+            <td>{{ article.createdAt|date('Y-m-d') }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ path('article_list') }}" class="link-offset-3 ms-3">
+        &larr; Вернуться к списку статей
+    </a>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{# templates/article/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="mt-4 ms-3">Список статей</h1>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Дата публикации</th>
+            <th>Описание</th>
+            <th>Просмотры</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>
+                    <a href="{{ path('article_show', {'slug': article.slug}) }}">
+                        {{ article.title }}
+                    </a>
+                </td>
+                <td>{{ article.createdAt|date('Y-m-d') }}</td>
+                <td>
+                    {{ article.description ? article.description|slice(0, 100) ~ (article.description|length > 100 ? '...' : '') : 'Нет описания' }}
+                </td>
+                <td>{{ article.views|format_views }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
